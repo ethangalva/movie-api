@@ -1,0 +1,59 @@
+* {
+   margin: 0px;
+   padding: 0px;
+}
+body {
+   padding: 40px;
+   font-family: 'Inconsolata', monospace;
+   font-weight: 400;
+   max-width: 100%;
+}
+header {
+   padding-bottom: 10px;
+}
+.title {
+   text-decoration: none;
+   color: black;
+   font-weight: 700;
+   font-size: 3em;
+}
+/* description styling */
+.description {
+   padding-bottom: 20px;
+}
+/* table styling */
+.odd {
+   background-color: #f6f7f9;
+}
+.even {
+   background-color: transparent;
+}
+table {
+   text-align: left;
+   border-spacing: 4px;
+}
+.table-header {
+   font-weight: 700;
+}
+.table-body > tr > th {
+   font-weight: 400;
+   padding-top: 3px;
+   padding-bottom: 3px;
+}
+.th-big {
+   word-break:break-all;
+}
+
+.json {
+   font-style: italic;
+   color: #e0245e;
+}
+.json-dark {
+   color: black;
+}
+.indent {
+   padding-left: 25px;
+}
+.indent-2 {
+   padding-left: 50px;
+}

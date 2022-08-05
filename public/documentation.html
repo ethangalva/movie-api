@@ -5,19 +5,153 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
-    <title>Documentation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>myFlix API Documentation</title>
 </head>
 <body>
     <header class="header">
-        <a href="index.html" class="title">Movie API</a>
+        <a href="index.html" class="title">myFlix API Documentation</a>
     </header>
     <main class="main">
         <div class="description box">
-            <h3 class="subTitle">Description</h3>
-            <p class="text">API that supplies a collection of Movies information and images for open use.</p>
+            <!-- <h3 class="subTitle">Description</h3> -->
+            <!-- <p class="text">API that supplies a collection of Movies information and images for open use.</p> -->
+            <p class="text">API that supplies information for webapp myFlix.</p>
+            <p class="text">Information supplies includes: movies, user info, genre info.</p>
         </div>
-    </main>
-    
 
+        <table>
+            <thead>
+                <tr class="table-header odd">
+                    <th>Business Logic</th>
+                    <th>URL</th>
+                    <th>HTTP Method</th>
+                    <th>Request body data format</th>
+                    <th>Response body data format</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr class="odd">
+                    <th>Return list of ALL movies</th>
+                    <th>/movies</th>
+                    <th>GET</th>
+                    <th>None</th>
+                    <th>A JSON object holding data from every movie</th>
+                </tr>
+                <tr class="even">
+                    <th>Return data about a single movie by title</th>
+                    <th>/movies/:title</th>
+                    <th>GET</th>
+                    <th>None</th>
+                    <th class="th-big">A JSON object holding data about the movie including its description, genre, direction, image URL, and whether it's featured or not.<br>
+                        <span class="json" id="json"></span>
+                        <p class="json">{</p>
+                        <p class="json indent"><span class="json-dark">"title":</span> "The Big Short",</p>
+                        <p class="json indent"><span class="json-dark">"description":</span> "In 2006-2007 a group of investors bet against the US mortgage market. In their research, they discover how flawed and corrupt the market is.",</p>
+                        <p class="json indent"><span class="json-dark">"genre":</span> {</p>
+                        <p class="json indent-2"><span class="json-dark">"name":</span> "Drama",</p>
+                        <p class="json indent-2"><span class="json-dark">"description":</span> "The drama genre features stories with high stakes and many conflicts. They're plot-driven and demand that every character and scene move the story forward. Dramas follow a clearly defined narrative plot structure, portraying real-life scenarios or extreme situations with emotionally-driven characters."</p>
+                        <p class="json indent">},</p>
+                        <p class="json indent"><span class="json-dark">"directors":</span> {</p>
+                        <p class="json indent-2"><span class="json-dark">"name":</span> "Adam McKay",</p>
+                        <p class="json indent-2"><span class="json-dark">"bio":</span> "Adam McKay (born April 17, 1968) is an American screenwriter, director, comedian, and actor. McKay has a comedy partnership with Will Ferrell, with whom he co-wrote the films Anchorman, Talladega Nights, and The Other Guys. Ferrell and McKay also founded their comedy website Funny or Die through their production company Gary Sanchez Productions. He has been married to Shira Piven since 1999. They have two children.",</p>
+                        <p class="json indent-2"><span class="json-dark">"birth":</span> 1968</p>
+                        <p class="json indent">},</p>
+                        <p class="json indent"><span class="json-dark">"imageURL":</span> "https://m.media-amazon.com/images/M/MV5BNDc4MThhN2EtZjMzNC00ZDJmLThiZTgtNThlY2UxZWMzNjdkXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_.jpg",</p>
+                        <p class="json indent"><span class="json-dark">"featured":</span> true</p>
+                        <p class="json">}</p>
+                    </th>
+                </tr>
+                <tr class="odd">
+                    <th>Return data about a genre by name/title (description)</th>
+                    <th>/movies/genre/:genreName</th>
+                    <th>GET</th>
+                    <th>None</th>
+                    <th>A JSON object holding data (description) about a specific genre.<br>
+                        <p class="json">{</p>
+                        <p class="json indent"><span class="json-dark">"name":</span> "Drama",</p>
+                        <p class="json indent"><span class="json-dark">"description":</span> "The drama genre features stories with high stakes and many conflicts. They're plot-driven and demand that every character and scene move the story forward. Dramas follow a clearly defined narrative plot structure, portraying real-life scenarios or extreme situations with emotionally-driven characters."</p>
+                        <p class="json">}</p>
+                    </th>
+                </tr>
+                <tr class="even">
+                    <th>Return data about a director by name (bio, birth year, death year)</th>
+                    <th>/movies/directors/:directorName</th>
+                    <th>GET</th>
+                    <th>None</th>
+                    <th>A JSON object holding data (bio, borth year, death year).<br>
+                        <span class="json-dark"></span>
+                        <p class="json">{</p>
+                        <p class="json indent"><span class="json-dark">"name":</span> "John Lee Hancock",</p>    
+                        <p class="json indent"><span class="json-dark">"bio":</span> "John Lee Hancock was born on December 15, 1956 in Longview, Texas, USA. He is a writer and director, known for The Blind Side (2009), The Highwaymen (2019) and Saving Mr. Banks (2013).",</p>    
+                        <p class="json indent"><span class="json-dark">"birth":</span> 1956</p>    
+                        <p class="json">}</p>
+                    </th>
+                </tr>
+                <tr class="odd">
+                    <th>Allows new users to register</th>
+                    <th>/users</th>
+                    <th>POST</th>
+                    <th>A JSON object holding information about the new user (username).<br>
+                        <p class="json">{</p>
+                        <p class="json indent"><span class="json-dark">"name":</span> "Mary",</p>
+                        <p class="json indent"><span class="json-dark">"favoriteMovies":</span> [],</p>
+                        <p class="json">}</p>
+                    </th>
+                    <th>A JSON object holding data (username, id).<br>
+                        <p class="json">{</p>
+                            <p class="json indent"><span class="json-dark">"name":</span> "Mary",</p>
+                            <p class="json indent"><span class="json-dark">"favoriteMovies":</span> [],</p>
+                            <p class="json indent"><span class="json-dark">"id":</span> "a5ff7578-8cfe-4540-a6c7-3f1e9a4512de"</p>
+                            <p class="json">}</p>
+                    </th>
+                </tr>
+                <tr class="even">
+                    <th>Allows users to update their username info (username)</th>
+                    <th>/users/:id</th>
+                    <th>PUT</th>
+                    <th>A JSON object containing data about the new username.<br>
+                        <p class="json">{</p>
+                        <p class="json indent"><span class="json-dark">"name":</span> "New Name",</p>
+                        <p class="json indent"><span class="json-dark">"favoriteMovies":</span> []</p>
+                        <p class="json">}</p>
+                    </th>
+                    <th>A JSON object containing data about the user including id, and new username.<br>
+                        <p class="json">{</p>
+                        <p class="json indent"><span class="json-dark">"id":</span> 1,</p>
+                        <p class="json indent"><span class="json-dark">"name":</span> "New Name",</p>
+                        <p class="json indent"><span class="json-dark">"favoriteMovies":</span> []</p>
+                        <p class="json">}</p>
+                        
+                            
+                            
+                            
+                        
+                    </th>
+                </tr>
+                <tr class="odd">
+                    <th>Allow users to add a movie to their list of favorites</th>
+                    <th>/users/:id/:movieTitle</th>
+                    <th>POST</th>
+                    <th>None</th>
+                    <th>A message indicating if the movie was successfuly added to the user's favourites array.</th>
+                </tr>
+                <tr class="even">
+                    <th>Allow users to remove a movie from their list of favorites</th>
+                    <th>/users/:id/:movieTitle</th>
+                    <th>DELETE</th>
+                    <th>None</th>
+                    <th>A message indicating if the movie was successfuly deleted from the user's favourites array.</th>
+                </tr>
+                <tr class="odd">
+                    <th>Allow existing users to deregister</th>
+                    <th>/users/:id</th>
+                    <th>DELETE</th>
+                    <th>None</th>
+                    <th>A message indicating if the user was successfuly deleted from the users array.</th>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>
