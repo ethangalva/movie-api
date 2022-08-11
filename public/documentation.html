@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>myFlix API Documentation</title>
 </head>
-<body>
+<body> 
     <header class="header">
         <a href="index.html" class="title">myFlix API Documentation</a>
     </header>
@@ -64,7 +64,7 @@
                 </tr>
                 <tr class="odd">
                     <th>Return data about a genre by name/title (description)</th>
-                    <th>/movies/genre/:genreName</th>
+                    <th>/movies/genre/:name</th>
                     <th>GET</th>
                     <th>None</th>
                     <th>A JSON object holding data (description) about a specific genre.<br>
@@ -76,7 +76,7 @@
                 </tr>
                 <tr class="even">
                     <th>Return data about a director by name (bio, birth year, death year)</th>
-                    <th>/movies/directors/:directorName</th>
+                    <th>/movies/director/:name</th>
                     <th>GET</th>
                     <th>None</th>
                     <th>A JSON object holding data (bio, borth year, death year).<br>
@@ -122,11 +122,6 @@
                         <p class="json indent"><span class="json-dark">"name":</span> "New Name",</p>
                         <p class="json indent"><span class="json-dark">"favoriteMovies":</span> []</p>
                         <p class="json">}</p>
-                        
-                            
-                            
-                            
-                        
                     </th>
                 </tr>
                 <tr class="odd">
