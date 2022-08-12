@@ -40,51 +40,54 @@
                 </tr>
                 <tr class="even">
                     <th>Return data about a single movie by title</th>
-                    <th>/movies/:title</th>
+                    <th>/movies/:Title</th>
                     <th>GET</th>
                     <th>None</th>
                     <th class="th-big">A JSON object holding data about the movie including its description, genre, direction, image URL, and whether it's featured or not.<br>
                         <span class="json" id="json"></span>
                         <p class="json">{</p>
-                        <p class="json indent"><span class="json-dark">"title":</span> "The Big Short",</p>
-                        <p class="json indent"><span class="json-dark">"description":</span> "In 2006-2007 a group of investors bet against the US mortgage market. In their research, they discover how flawed and corrupt the market is.",</p>
-                        <p class="json indent"><span class="json-dark">"genre":</span> {</p>
-                        <p class="json indent-2"><span class="json-dark">"name":</span> "Drama",</p>
-                        <p class="json indent-2"><span class="json-dark">"description":</span> "The drama genre features stories with high stakes and many conflicts. They're plot-driven and demand that every character and scene move the story forward. Dramas follow a clearly defined narrative plot structure, portraying real-life scenarios or extreme situations with emotionally-driven characters."</p>
+                        <p class="json indent"><span class="json-dark">"_id":</span> "62eebb8e9e5794944ef39936",</p>
+                        <p class="json indent"><span class="json-dark">"Title":</span> "Interstellar",</p>
+                        <p class="json indent"><span class="json-dark">"Description":</span> "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",</p>
+                        <p class="json indent"><span class="json-dark">"Genre":</span> {</p>
+                        <p class="json indent-2"><span class="json-dark">"Name":</span> "Sci-Fi",</p>
+                        <p class="json indent-2"><span class="json-dark">"Description":</span> "Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, interstellar travel or other technologies."</p>
                         <p class="json indent">},</p>
-                        <p class="json indent"><span class="json-dark">"directors":</span> {</p>
-                        <p class="json indent-2"><span class="json-dark">"name":</span> "Adam McKay",</p>
-                        <p class="json indent-2"><span class="json-dark">"bio":</span> "Adam McKay (born April 17, 1968) is an American screenwriter, director, comedian, and actor. McKay has a comedy partnership with Will Ferrell, with whom he co-wrote the films Anchorman, Talladega Nights, and The Other Guys. Ferrell and McKay also founded their comedy website Funny or Die through their production company Gary Sanchez Productions. He has been married to Shira Piven since 1999. They have two children.",</p>
-                        <p class="json indent-2"><span class="json-dark">"birth":</span> 1968</p>
+                        <p class="json indent"><span class="json-dark">"Director":</span> {</p>
+                        <p class="json indent-2"><span class="json-dark">"Name":</span> "Christopher Nolan",</p>
+                        <p class="json indent-2"><span class="json-dark">"Bio":</span> "Christopher Nolan, British film director and writer acclaimed for his noirish visual aesthetic and unconventional, often highly conceptual narratives. Nolan was raised by an American mother and a British father, and his family spent time in both Chicago and London.",</p>
+                        <p class="json indent-2"><span class="json-dark">"Birth":</span> 1970,</p>
+                        <p class="json indent-2"><span class="json-dark">"Death":</span> ""</p>
                         <p class="json indent">},</p>
-                        <p class="json indent"><span class="json-dark">"imageURL":</span> "https://m.media-amazon.com/images/M/MV5BNDc4MThhN2EtZjMzNC00ZDJmLThiZTgtNThlY2UxZWMzNjdkXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_.jpg",</p>
-                        <p class="json indent"><span class="json-dark">"featured":</span> true</p>
+                        <p class="json indent"><span class="json-dark">"ImagePath":</span> "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",</p>
+                        <p class="json indent"><span class="json-dark">"Featured":</span> true</p>
                         <p class="json">}</p>
                     </th>
                 </tr>
                 <tr class="odd">
                     <th>Return data about a genre by name/title (description)</th>
-                    <th>/movies/genre/:name</th>
+                    <th>/movies/genre/:Name</th>
                     <th>GET</th>
                     <th>None</th>
                     <th>A JSON object holding data (description) about a specific genre.<br>
                         <p class="json">{</p>
-                        <p class="json indent"><span class="json-dark">"name":</span> "Drama",</p>
-                        <p class="json indent"><span class="json-dark">"description":</span> "The drama genre features stories with high stakes and many conflicts. They're plot-driven and demand that every character and scene move the story forward. Dramas follow a clearly defined narrative plot structure, portraying real-life scenarios or extreme situations with emotionally-driven characters."</p>
+                        <p class="json indent"><span class="json-dark">"Name":</span> "Sci-Fi",</p>
+                        <p class="json indent"><span class="json-dark">"Description":</span> "Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, interstellar travel or other technologies."</p>
                         <p class="json">}</p>
                     </th>
                 </tr>
                 <tr class="even">
                     <th>Return data about a director by name (bio, birth year, death year)</th>
-                    <th>/movies/director/:name</th>
+                    <th>/movies/director/:Name</th>
                     <th>GET</th>
                     <th>None</th>
                     <th>A JSON object holding data (bio, borth year, death year).<br>
                         <span class="json-dark"></span>
                         <p class="json">{</p>
-                        <p class="json indent"><span class="json-dark">"name":</span> "John Lee Hancock",</p>    
-                        <p class="json indent"><span class="json-dark">"bio":</span> "John Lee Hancock was born on December 15, 1956 in Longview, Texas, USA. He is a writer and director, known for The Blind Side (2009), The Highwaymen (2019) and Saving Mr. Banks (2013).",</p>    
-                        <p class="json indent"><span class="json-dark">"birth":</span> 1956</p>    
+                        <p class="json indent"><span class="json-dark">"Name":</span> "Christopher Nolan",</p>    
+                        <p class="json indent"><span class="json-dark">"Bio":</span> "Christopher Nolan, British film director and writer acclaimed for his noirish visual aesthetic and unconventional, often highly conceptual narratives. Nolan was raised by an American mother and a British father, and his family spent time in both Chicago and London.",</p>    
+                        <p class="json indent"><span class="json-dark">"Birth":</span> 1970,</p>    
+                        <p class="json indent"><span class="json-dark">"Death":</span> ""</p>    
                         <p class="json">}</p>
                     </th>
                 </tr>
@@ -92,55 +95,63 @@
                     <th>Allows new users to register</th>
                     <th>/users</th>
                     <th>POST</th>
-                    <th>A JSON object holding information about the new user (username).<br>
+                    <th>A JSON object holding information about the new user.<br>
                         <p class="json">{</p>
-                        <p class="json indent"><span class="json-dark">"name":</span> "Mary",</p>
-                        <p class="json indent"><span class="json-dark">"favoriteMovies":</span> [],</p>
+                        <p class="json indent"><span class="json-dark">"Username":</span> "Username",</p>
+                        <p class="json indent"><span class="json-dark">"Password":</span> "Password",</p>
+                        <p class="json indent"><span class="json-dark">"Email":</span> "email@gmail.com",</p>
+                        <p class="json indent"><span class="json-dark">"Birthday":</span> "2000-01-01",</p>
+                        <p class="json indent"><span class="json-dark">"FavoriteMovies":</span> [],</p>
                         <p class="json">}</p>
                     </th>
-                    <th>A JSON object holding data (username, id).<br>
+                    <th>A JSON object holding data (username, password, email, birthday, favoriteMovies, ID).<br>
                         <p class="json">{</p>
-                            <p class="json indent"><span class="json-dark">"name":</span> "Mary",</p>
-                            <p class="json indent"><span class="json-dark">"favoriteMovies":</span> [],</p>
-                            <p class="json indent"><span class="json-dark">"id":</span> "a5ff7578-8cfe-4540-a6c7-3f1e9a4512de"</p>
-                            <p class="json">}</p>
+                        <p class="json indent"><span class="json-dark">"Username":</span> "Username",</p>
+                        <p class="json indent"><span class="json-dark">"Password":</span> "Password",</p>
+                        <p class="json indent"><span class="json-dark">"Email":</span> "email@gmail.com",</p>
+                        <p class="json indent"><span class="json-dark">"Birthday":</span> "2000-01-01",</p>
+                        <p class="json indent"><span class="json-dark">"FavoriteMovies":</span> [],</p>
+                        <p class="json indent"><span class="json-dark">"_id":</span> "62f69064b9d006366cb9640f"</p>
+                        <p class="json">}</p>
                     </th>
                 </tr>
                 <tr class="even">
-                    <th>Allows users to update their username info (username)</th>
-                    <th>/users/:id</th>
+                    <th>Allows users to update their username by their id</th>
+                    <th>/users/:_id</th>
                     <th>PUT</th>
                     <th>A JSON object containing data about the new username.<br>
                         <p class="json">{</p>
-                        <p class="json indent"><span class="json-dark">"name":</span> "New Name",</p>
-                        <p class="json indent"><span class="json-dark">"favoriteMovies":</span> []</p>
+                        <p class="json indent"><span class="json-dark">"Username":</span> "new Username"</p>
                         <p class="json">}</p>
                     </th>
                     <th>A JSON object containing data about the user including id, and new username.<br>
                         <p class="json">{</p>
-                        <p class="json indent"><span class="json-dark">"id":</span> 1,</p>
-                        <p class="json indent"><span class="json-dark">"name":</span> "New Name",</p>
-                        <p class="json indent"><span class="json-dark">"favoriteMovies":</span> []</p>
+                        <p class="json indent"><span class="json-dark">"Username":</span> "new Username",</p>
+                        <p class="json indent"><span class="json-dark">"Password":</span> "Password",</p>
+                        <p class="json indent"><span class="json-dark">"Email":</span> "email@gmail.com",</p>
+                        <p class="json indent"><span class="json-dark">"Birthday":</span> "2000-01-01",</p>
+                        <p class="json indent"><span class="json-dark">"FavoriteMovies":</span> [],</p>
+                        <p class="json indent"><span class="json-dark">"_id":</span> "62f69064b9d006366cb9640f"</p>
                         <p class="json">}</p>
                     </th>
                 </tr>
                 <tr class="odd">
                     <th>Allow users to add a movie to their list of favorites</th>
-                    <th>/users/:id/:movieTitle</th>
+                    <th>/users/:_id/favoriteMovies/:movieID</th>
                     <th>POST</th>
                     <th>None</th>
                     <th>A message indicating if the movie was successfuly added to the user's favourites array.</th>
                 </tr>
                 <tr class="even">
                     <th>Allow users to remove a movie from their list of favorites</th>
-                    <th>/users/:id/:movieTitle</th>
+                    <th>/users/:_id/favoriteMovies/:movieID</th>
                     <th>DELETE</th>
                     <th>None</th>
                     <th>A message indicating if the movie was successfuly deleted from the user's favourites array.</th>
                 </tr>
                 <tr class="odd">
                     <th>Allow existing users to deregister</th>
-                    <th>/users/:id</th>
+                    <th>/users/:Username</th>
                     <th>DELETE</th>
                     <th>None</th>
                     <th>A message indicating if the user was successfuly deleted from the users array.</th>

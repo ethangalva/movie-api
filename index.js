@@ -61,8 +61,8 @@ app.get('/movies/genre/:Name', (req, res) => {
         });
 });
 
-app.get('/movies/director/:Director', (req, res) => {
-    Movies.findOne({ 'Director.Name': req.params.Director })
+app.get('/movies/director/:Name', (req, res) => {
+    Movies.findOne({ 'Director.Name': req.params.Name })
       .then((foundMovie) => {
         res.status(201).json(foundMovie.Director);
       })
@@ -109,43 +109,47 @@ app.post('/users', (req, res) => {
 });
 
 // [UPDATE] - Allows users to update their username info (username)
-app.put('/users/:id', (req, res) => {
-    const {id} = req.params;
-    const updatedUser = req.body;
-
-    let user = users.find( user => user.id == id);
-
-    if (user) {
-        user.name = updatedUser.name;
-        res.status(200).json(user);
-    } else {
-        res.status(400).send('No such user.');
-    }
+app.put('/users/:_id', (req, res) => {
+    Users.findOneAndUpdate(
+        {_id: req.params._id},
+        {
+            $set: {
+                Username: req.body.Username
+            }
+        },
+        {new: true},
+        (err, updatedUser) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send(`Error: ${err}`);
+            } else {
+                res.json(updatedUser);
+            }
+        }
+    )
 });
 
 // [CREATE] - Allow users to add a movie to their list of favorites
-app.post('/users/:_id/movies/:movieID', (req, res) => {
-    Users.findOneAndUpdate({_id: req.params._id},
-   { 
-     $push:{FavoriteMovies: req.params.movieID} 
-    },
-    {new: true},
-    (err, updatedUser) => {
-    if (err) {
-        console.error(err);
-        res.send(err)
-    }
-    else {
-        res.json(updatedUser)
-    }
-});
+app.post('/users/:_id/favoriteMovies/:movieID', (req, res) => {
+    Users.findOneAndUpdate(
+        {_id: req.params._id},
+        {$addToSet: {FavoriteMovies: req.params.movieID}},
+        {new: true},
+        (err, updatedUser) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send(`Error: ${err}`);
+            } else {
+                res.json(updatedUser);
+            }
+        }
+    )
 });
 
 // [DELETE] - Allow users to remove a movie from their list of favorites
-app.delete('/users/:_id/movies/:movieID', (req, res) => {
-   
+app.delete('/users/:_id/favoriteMovies/:movieID', (req, res) => {
       Users.findOneAndUpdate({_id: req.params._id},
-   { 
+    { 
      $pull:{FavoriteMovies: req.params.movieID} 
     },
     {new: true},
@@ -157,8 +161,7 @@ app.delete('/users/:_id/movies/:movieID', (req, res) => {
     else {
         res.json(updatedUser)
     }
-});
-
+    });
 });
 
 // Allow existing users to deregister
@@ -184,10 +187,3 @@ app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
 });
 
-
-
-/*
-  "62eebb559e5794944ef39935",
-        "62eebbe19e5794944ef39937",
-        "62eeb66a9e5794944ef3992e"
-        */
