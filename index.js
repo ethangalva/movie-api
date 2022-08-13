@@ -15,6 +15,9 @@ mongoose.connect('mongodb://localhost:27017/myFlixAPI', { useNewUrlParser: true,
 
 app.use(bodyParser.json());
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 
 //creates and logs all access to the page on log.txt
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
@@ -26,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 // [READ] - Return list of ALL movies
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
@@ -38,7 +41,7 @@ app.get('/movies', (req, res) => {
 });
 
 // [READ] - Return data about a single movie by title
-app.get('/movies/:Title', (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.findOne({ Title: req.params.Title })
         .then((movie) => {
             res.json(movie);
@@ -47,10 +50,10 @@ app.get('/movies/:Title', (req, res) => {
             console.error(err);
             res.status(500).send("Error: " + err);
         });
-});``
+});
 
-// [READ] - Return data about a genre by name/title (description)`
-app.get('/movies/genre/:Name', (req, res) => {
+// [READ] - Return data about a genre by name/title (description)
+app.get('/movies/genre/:Name', passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.findOne({ "Genre.Name": req.params.Name })
         .then((foundMovie) => {
             res.status(201).json(foundMovie.Genre);
@@ -61,7 +64,7 @@ app.get('/movies/genre/:Name', (req, res) => {
         });
 });
 
-app.get('/movies/director/:Name', (req, res) => {
+app.get('/movies/director/:Name', passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.Name })
       .then((foundMovie) => {
         res.status(201).json(foundMovie.Director);
@@ -70,10 +73,10 @@ app.get('/movies/director/:Name', (req, res) => {
         console.error(err);
         res.status(500).send(`Error: ${err}`);
       });
-  });
+});
 
 // [READ] - Return data about all users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.find()
         .then((users) => {
             res.status(201).json(users);
@@ -109,7 +112,7 @@ app.post('/users', (req, res) => {
 });
 
 // [UPDATE] - Allows users to update their username info (username)
-app.put('/users/:_id', (req, res) => {
+app.put('/users/:_id', passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndUpdate(
         {_id: req.params._id},
         {
@@ -130,7 +133,7 @@ app.put('/users/:_id', (req, res) => {
 });
 
 // [CREATE] - Allow users to add a movie to their list of favorites
-app.post('/users/:_id/favoriteMovies/:movieID', (req, res) => {
+app.post('/users/:_id/favoriteMovies/:movieID', passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndUpdate(
         {_id: req.params._id},
         {$addToSet: {FavoriteMovies: req.params.movieID}},
@@ -147,7 +150,7 @@ app.post('/users/:_id/favoriteMovies/:movieID', (req, res) => {
 });
 
 // [DELETE] - Allow users to remove a movie from their list of favorites
-app.delete('/users/:_id/favoriteMovies/:movieID', (req, res) => {
+app.delete('/users/:_id/favoriteMovies/:movieID', passport.authenticate('jwt', {session: false}), (req, res) => {
       Users.findOneAndUpdate({_id: req.params._id},
     { 
      $pull:{FavoriteMovies: req.params.movieID} 
@@ -165,7 +168,7 @@ app.delete('/users/:_id/favoriteMovies/:movieID', (req, res) => {
 });
 
 // Allow existing users to deregister
-app.delete('/users/:Username', (req, res) => {
+app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndRemove({Username: req.params.Username})
         .then((user) => {
             if (!user) {
@@ -181,7 +184,7 @@ app.delete('/users/:Username', (req, res) => {
 });
 
 // run app and default returns
-app.use(express.static('public'));``
+app.use(express.static('public'));
 
 app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
