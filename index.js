@@ -26,13 +26,17 @@ app.use(cors());
 //     return callback(null, true);
 //   }
 // }));
-mongoose.connect('mongodb://localhost:27017/myFlixAPI', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// mongoose.connect('mongodb://localhost:27017/myFlixAPI', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 app.use(bodyParser.json());
 
 let auth = require('./auth')(app);
 const passport = require('passport');
 const { hashSync } = require('bcrypt');
+const { application } = require('express');
 require('./passport');
 
 //creates and logs all access to the page on log.txt
@@ -226,4 +230,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
     console.log('Listening on Port ' + port);
 });
-
