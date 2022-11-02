@@ -135,8 +135,7 @@ app.post('/users',
                 .create({
                     Username: req.body.Username,
                     Password: hashedPassword,
-                    Email: req.body.Email,
-                    Birthday: req.body.Birthday
+                    Email: req.body.Email
                 })
                 .then((user) => { res.status(201).json(user) })
                 .catch((error) => {
